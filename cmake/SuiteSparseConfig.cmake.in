@@ -1,0 +1,33 @@
+message(STATUS "SuiteSparse Dependencies Configuration")
+
+# include path
+set(SuiteSparse_INCLUDE_DIR @SuiteSparse_INCLUDE_DIR@)
+
+
+# libraries
+set(SuiteSparse_PREFIX )
+set(SuiteSparse_DEBUG_POSTFIX _d)
+set(SuiteSparse_LIB_NAMES AMD CAMD COLAMD CCOLAMD CHOLMOD)
+foreach(LIB_NAME ${SuiteSparse_LIB_NAMES})
+  # release mode built
+  find_library(LIB_${LIB_NAME} ${SuiteSparse_PREFIX}${LIB_NAME}
+                 PATHS ${SuiteSparse_ROOT} PATH_SUFFIXES ${SuiteSparse_POSSIBLE_LIB_DIRS})
+  # debug mode built
+  find_library(LIB_${LIB_NAME}_DEBUG ${SuiteSparse_PREFIX}${LIB_NAME}${SuiteSparse_DEBUG_POSTFIX}
+                 PATHS ${SuiteSparse_ROOT} PATH_SUFFIXES ${SuiteSparse_POSSIBLE_LIB_DIRS})
+
+  if(LIB_${LIB_NAME} AND LIB_${LIB_NAME}_DEBUG)
+    list(APPEND SuiteSparse_LIBRARIES "optimized;${LIB_${LIB_NAME}};")
+    list(APPEND SuiteSparse_DEBUG_LIBRARIES "debug;${LIB_${LIB_NAME}_DEBUG};")
+    list(APPEND SuiteSparse_LIBRARIES "debug;${LIB_${LIB_NAME}_DEBUG};")
+  elseif(LIB_${LIB_NAME})
+    list(APPEND SuiteSparse_LIBRARIES "${LIB_${LIB_NAME}};")
+  elseif(LIB_${LIB_NAME}_DEBUG)
+    list(APPEND SuiteSparse_LIBRARIES "${LIB_${LIB_NAME}_DEBUG};")
+  endif(LIB_${LIB_NAME} AND LIB_${LIB_NAME}_DEBUG)
+endforeach(LIB_NAME ${SuiteSparse_LIB_NAMES})
+message(STATUS "cmake modules SuiteSparse_LIBRARIES :${SuiteSparse_LIBRARIES}")
+if(SuiteSparse_INCLUDE_DIRS AND SuiteSparse_LIBRARIES)
+  set(SuiteSparse_FOUND true)
+endif()
+
