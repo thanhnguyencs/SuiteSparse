@@ -85,6 +85,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)Demo\</OutDir>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>D:\dev\thirdparty\SuiteSparse\AMD\Include;D:\dev\thirdparty\SuiteSparse\CAMD\Include;D:\dev\thirdparty\SuiteSparse\CCOLAMD\Include;D:\dev\thirdparty\SuiteSparse\CHOLMOD\Include;D:\dev\thirdparty\SuiteSparse\COLAMD\Include;D:\dev\thirdparty\SuiteSparse\SuiteSparse_config;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>
@@ -120,6 +123,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\dev\thirdparty\SuiteSparse\AMD\Include;D:\dev\thirdparty\SuiteSparse\CAMD\Include;D:\dev\thirdparty\SuiteSparse\CCOLAMD\Include;D:\dev\thirdparty\SuiteSparse\CHOLMOD\Include;D:\dev\thirdparty\SuiteSparse\COLAMD\Include;D:\dev\thirdparty\SuiteSparse\SuiteSparse_config</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

@@ -24,7 +24,7 @@ default:
 	- ( cd RBio && $(MAKE) )
 
 # install all packages in /usr/local/lib and /usr/local/include
-install:
+install: 
 	- ( cd SuiteSparse_config && $(MAKE) install )
 	- ( cd AMD && $(MAKE) install )
 	- ( cd CAMD && $(MAKE) install )

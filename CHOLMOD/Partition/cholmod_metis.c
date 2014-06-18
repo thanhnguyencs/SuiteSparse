@@ -62,6 +62,7 @@
 #include "cholmod_partition.h"
 #include "cholmod_cholesky.h"
 
+typedef long int idxtype;
 
 /* ========================================================================== */
 /* === dumpgraph ============================================================ */
