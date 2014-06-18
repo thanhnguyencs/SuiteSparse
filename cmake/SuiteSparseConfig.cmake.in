@@ -6,14 +6,13 @@ set(SuiteSparse_INCLUDE_DIR @SuiteSparse_INCLUDE_DIR@)
 
 # libraries
 set(SuiteSparse_PREFIX )
-set(SuiteSparse_DEBUG_POSTFIX _d)
 set(SuiteSparse_LIB_NAMES AMD CAMD COLAMD CCOLAMD CHOLMOD)
 foreach(LIB_NAME ${SuiteSparse_LIB_NAMES})
   # release mode built
   find_library(LIB_${LIB_NAME} ${SuiteSparse_PREFIX}${LIB_NAME}
                  PATHS ${SuiteSparse_ROOT} PATH_SUFFIXES ${SuiteSparse_POSSIBLE_LIB_DIRS})
   # debug mode built
-  find_library(LIB_${LIB_NAME}_DEBUG ${SuiteSparse_PREFIX}${LIB_NAME}${SuiteSparse_DEBUG_POSTFIX}
+  find_library(LIB_${LIB_NAME}_DEBUG ${SuiteSparse_PREFIX}${LIB_NAME}@CMAKE_DEBUG_POSTFIX@
                  PATHS ${SuiteSparse_ROOT} PATH_SUFFIXES ${SuiteSparse_POSSIBLE_LIB_DIRS})
 
   if(LIB_${LIB_NAME} AND LIB_${LIB_NAME}_DEBUG)
